@@ -8,8 +8,8 @@ and open the template in the editor.
 <virtualmachine>
 	<OS name="Windows" version="10" vendor="Microsoft"/>
 	<consumption>
-		<cpucore>2</CPUcore>
-		<ram>2048</RAM>
+		<cpucore>2</cpucore>
+		<ram>2048</ram>
 		<capacityhdd>64</capacityhdd>
 	</consumption>
 </virtualmachine>	
