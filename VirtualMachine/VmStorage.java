@@ -15,7 +15,7 @@ public class VmStorage {
     private Map<String, VM> map;
     
     public void addVm(VM virtualMachine){
-        
+        map.put(virtualMachine.getName(), virtualMachine);
     }
     
     public VM getVm(String name){
