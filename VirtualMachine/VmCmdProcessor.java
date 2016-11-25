@@ -5,15 +5,19 @@
  */
 package LabWork.VirtualMachine;
 
+import java.io.IOException;
 import java.util.Map;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 
 /**
  *
  * @author 000
  */
 public class VmCmdProcessor {
-    public void addVM(String name, String description, String path){
-        
+    public void addVM(String name, String description, String path) throws SAXException, IOException, ParserConfigurationException{
+        VmAdder adder = new VmAdder();
+        adder.addVM(name, description, path);
     }
     
     public void removeVM(String name){
