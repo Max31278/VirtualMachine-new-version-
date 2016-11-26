@@ -104,6 +104,14 @@ public class VM {
         this.capacityHdd = capacityHdd;
     }
     public String toString(){
-        return ;
+        StringBuffer buf = new StringBuffer(); 
+        buf.append("************************"+"\n"); 
+        buf.append("name: "+ name+"\n"); 
+        buf.append("nameOS: "+nameOS+"\n"); 
+        buf.append("vendor: "+vendor+"\n"); 
+        buf.append("version: "+version+"\n"); 
+        buf.append("path: "+path+"\n"); 
+        buf.append("************************"+"\n"); 
+        return buf.toString(); 
     }
 }

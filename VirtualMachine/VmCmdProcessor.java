@@ -15,6 +15,14 @@ import org.xml.sax.SAXException;
  * @author 000
  */
 public class VmCmdProcessor {
+    String[] s; 
+    
+    public VmCmdProcessor(String[] s) { 
+        for (int i = 0; i < s.length; i++) { 
+            this.s[i] = s[i]; 
+        } 
+    } 
+    
     public void addVM(String name, String description, String path) throws SAXException, IOException, ParserConfigurationException{
         VmAdder adder = new VmAdder();
         adder.addVM(name, description, path);
@@ -25,7 +33,8 @@ public class VmCmdProcessor {
     }
     
     public Map<String, VM> listVM(int number){
-        return
+        
+        return 
     }
     
     public VM getVM(String name){
