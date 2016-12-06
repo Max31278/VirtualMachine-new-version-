@@ -38,7 +38,8 @@ public class VmCmdProcessor {
     }
     
     public VM getVM(String name){
-        return
+        VmStorage vm = new VmStorage();
+        return vm.getVm(name);
     }
     
 }

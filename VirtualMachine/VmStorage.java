@@ -5,13 +5,15 @@
  */
 package LabWork.VirtualMachine;
 
+import java.io.Serializable;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
  * @author 000
  */
-public class VmStorage {
+public class VmStorage implements Serializable{
     private Map<String, VM> map;
     
     public void addVm(VM virtualMachine){
@@ -19,8 +21,7 @@ public class VmStorage {
     }
     
     public VM getVm(String name){
-        
-        return
+        return map.get(name);
     }
     
     public Map<String, VM> listVms(int number){
@@ -36,6 +37,6 @@ public class VmStorage {
     }
     
     public Map<String, VM> getVms(){
-        return
+        return map;
     }
 }
