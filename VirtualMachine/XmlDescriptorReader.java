@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LabWork.VirtualMachine;
+package labwork.VirtualMachine;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,14 +28,15 @@ public class XmlDescriptorReader {
         
         File xmlFile = new File(path); // парсим xmlFile
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        dbFactory.setIgnoringElementContentWhitespace(true);
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
         xmlDocument = dBuilder.parse(xmlFile);
         
         NodeList os = xmlDocument.getElementsByTagName("OS"); // Создаем список тега OS
         NamedNodeMap osAttributes = os.item(0).getAttributes(); // Создаем переменную в которой хранятся атрибуты тега OS
-        nameOS = osAttributes.getNamedItem("name").getNodeValue(); // Присваиваем значения
-        vendor = osAttributes.getNamedItem("vendor").getNodeValue(); // Присваиваем значения
-        version = osAttributes.getNamedItem("version").getNodeValue(); // Присваиваем значения
+        nameOS = osAttributes.getNamedItem("name").getTextContent(); // Присваиваем значения
+        vendor = osAttributes.getNamedItem("vendor").getTextContent(); // Присваиваем значения
+        version = osAttributes.getNamedItem("version").getTextContent(); // Присваиваем значения
         cpuCore = Integer.valueOf(xmlDocument.getElementsByTagName("cpucore").item(0).getTextContent()); // Присваиваем значения
         ram = Integer.valueOf(xmlDocument.getElementsByTagName("ram").item(0).getTextContent()); // Присваиваем значения
         capacityHdd = Integer.valueOf(xmlDocument.getElementsByTagName("capacityhdd").item(0).getTextContent()); // Присваиваем значения

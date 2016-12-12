@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LabWork.VirtualMachine;
+package labwork.VirtualMachine;
 
 import java.io.IOException;
 import java.util.Map;
@@ -15,16 +15,17 @@ import org.xml.sax.SAXException;
  * @author 000
  */
 public class VmCmdProcessor {
-    String[] s; 
+ 
     
-    public VmCmdProcessor(String[] s) { 
-        for (int i = 0; i < s.length; i++) { 
-            this.s[i] = s[i]; 
-        } 
-    } 
+   VmStorage vm;
+    VmAdder adder;
     
-    public void addVM(String name, String description, String path) throws SAXException, IOException, ParserConfigurationException{
-        VmAdder adder = new VmAdder();
+    public VmCmdProcessor(VmStorage vm){
+        this.vm = vm;
+        adder = new VmAdder(this.vm);
+    }
+    public void addVM(String name, String description, String path) throws SAXException, IOException, ParserConfigurationException, VmStorageAddedException{
+        
         adder.addVM(name, description, path);
     }
     
@@ -33,13 +34,14 @@ public class VmCmdProcessor {
     }
     
     public Map<String, VM> listVM(int number){
-        
-        return 
+         
+        return vm.getVms();
     }
     
     public VM getVM(String name){
-        VmStorage vm = new VmStorage();
-        return vm.getVm(name);
+        
+        VM virtual = vm.getVm(name);
+        return virtual;
     }
     
 }

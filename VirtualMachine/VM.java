@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LabWork.VirtualMachine;
+package labwork.VirtualMachine;
+
+import java.io.Serializable;
 
 /**
  *
  * @author 000
  */
-public class VM {
+public class VM implements Serializable {
     private String name;
     private String nameOS;
     private String vendor;
@@ -104,7 +106,7 @@ public class VM {
         this.capacityHdd = capacityHdd;
     }
     public String toString(){
-        StringBuffer buf = new StringBuffer(); 
+        StringBuilder buf = new StringBuilder(); 
         buf.append("************************"+"\n"); 
         buf.append("name: "+ name+"\n"); 
         buf.append("nameOS: "+nameOS+"\n"); 

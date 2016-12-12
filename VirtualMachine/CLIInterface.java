@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LabWork.VirtualMachine;
+package labwork.VirtualMachine;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -14,41 +14,55 @@ import org.xml.sax.SAXException;
  *
  * @author 000
  */
-public class CLIInterface {
-    public static void main(String[] args) throws SAXException, IOException, ParserConfigurationException{
+public class CLIInterface  {
+    public static void main(String[] args) throws SAXException, IOException, ParserConfigurationException, CLIInterfaceAddedException, VmStorageAddedException{
+        VmStorage storage = new VmStorage();
+        VmStorageOperator storageOperator = new VmStorageOperator(storage);
+        VmCmdProcessor cmd = new VmCmdProcessor(storage);
+        
         System.out.println("Enter command: "); 
         String str = new String(); 
         Scanner in = new Scanner(System.in); 
-        String[] s;
+        String[] s ;
+        boolean chek = false;
         do{
+        char[] error = new char[]{'/', ':', '*', '?', '<', '>', '|'};     
         str = in.nextLine(); 
         s = str.split(" "); 
             if(s[0].equals("addVM")){ 
-                if (s[1].equals(null) || s[2].equals(null) || s[3].equals(null)){
-                    System.out.println("Введены не все параметры");
-                    break;
+                if (s[1].equals(null) || s[2].equals(null) || s[3].equals(null)) throw new CLIInterfaceAddedException("введены не все параметры");
+                char[] cr = s[1].toCharArray();
+                for (int i=0; i< cr.length; i++){
+                    for (char er:error){
+                        if (cr[i] == er)throw new CLIInterfaceAddedException("Имя введено некорректно");
+                    }
                 }
-                VmCmdProcessor cmd = new VmCmdProcessor(s); 
-                cmd.addVM(s[1], s[2], s[3]); 
+                 
+                cmd.addVM(s[1], s[2], s[3]);
+                
             } 
             else if(s[0].equals("removeVM")){ 
 
             } 
             else if(s[0].equals("getVM")){ 
-                if (s[1].equals(null)){
-                    System.out.println("Не введен параметр name");
-                    break;
-                }
-                VmCmdProcessor cmd = new VmCmdProcessor(s);
+                if (s[1].equals(null)) throw new CLIInterfaceAddedException("введены не все параметры");
+                char[] cr = s[1].toCharArray();
+                for (int i=0; i< cr.length; i++){
+                    for (char er:error){
+                        if (cr[i] == er)throw new CLIInterfaceAddedException("Имя введено некорректно");
+                    }
+                }                
                 VM vm = cmd.getVM(s[1]);
-                vm.toString();
+                String buf = vm.toString();
+                System.out.println(buf);
             } 
             else if(s[0].equals("get")){ 
             }
             else if (s[0].equals("exit")){
-                VmStorageOperator storage = new VmStorageOperator();
-                storage.save();
+                chek = true;                
+                storageOperator.save();
+                break;
             }
-        }while(s[0].equals("exit"));
+        }while(chek == false);
         }       
     }
