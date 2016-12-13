@@ -40,8 +40,7 @@ public class VmCmdProcessor {
     
     public VM getVM(String name){
         
-        VM virtual = vm.getVm(name);
-        return virtual;
+        return vm.getVm(name);
     }
     
 }
